@@ -854,6 +854,24 @@ public class TwitterClient implements ITwitterClientV1, ITwitterClientV2, ITwitt
     }
     return getTweetsRecursively(url, parameters, getRequestHelper());
   }
+  
+  public TweetList searchTweetsCustom(String query, AdditionalParameters additionalParameters) {
+    Map<String, String> parameters = additionalParameters.getMapFromParameters();
+    parameters.put(QUERY, query);
+    parameters.put(TWEET_FIELDS, ALL_TWEET_FIELDS);
+    parameters.put(USER_FIELDS, ALL_USER_FIELDS);
+    parameters.put(EXPANSION, ALL_EXPANSIONS);
+    parameters.put(MEDIA_FIELD, ALL_MEDIA_FIELDS);
+    parameters.put(POLL_FIELDS, ALL_POLL_FIELDS);
+    String url = urlHelper.getSearchRecentTweetsUrl();
+    if (!additionalParameters.isRecursiveCall()) {
+      return getRequestHelper().getRequestWithParameters(url, parameters, TweetList.class).orElseThrow(NoSuchElementException::new);
+    }
+    if (additionalParameters.getMaxResults() <= 0) {
+      parameters.put(MAX_RESULTS, String.valueOf(100));
+    }
+    return getTweetsRecursively(url, parameters, getRequestHelper());
+  }
 
   @Override
   public TweetList searchAllTweets(final String query) {
