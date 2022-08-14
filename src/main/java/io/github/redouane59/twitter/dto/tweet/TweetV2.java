@@ -577,15 +577,21 @@ public class TweetV2 implements Tweet {
   @Setter
   public static class Polls {
 
+      private String id;
       @JsonProperty("voting_status")
       private String votingStatus;
+      @JsonProperty("duration_minutes")
+      private String durationMinutes;
       @JsonProperty("options")
       private List<Options> options;
+      @JsonProperty("end_datetime")
+      private String endDatetime;
 
       @Getter
       @Setter
       public static class Options {
 
+          private int position;
           private String label;
           private long votes;
       }

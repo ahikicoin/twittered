@@ -1,0 +1,3 @@
+①pom.xmlの最下部のバージョンを更新する。
+②以下オプションをつけて、Github上のライブラリを更新する。
+clean deploy -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/ahikicoin/twittered -Dmaven.test.skip=true
