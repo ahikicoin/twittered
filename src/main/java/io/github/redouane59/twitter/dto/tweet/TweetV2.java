@@ -1,11 +1,16 @@
 package io.github.redouane59.twitter.dto.tweet;
 
+import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonNode;
+
 import io.github.redouane59.twitter.dto.stream.StreamRules;
 import io.github.redouane59.twitter.dto.stream.StreamRules.StreamRule;
 import io.github.redouane59.twitter.dto.tweet.entities.BaseEntity;
@@ -20,9 +25,6 @@ import io.github.redouane59.twitter.dto.user.User;
 import io.github.redouane59.twitter.dto.user.UserV2;
 import io.github.redouane59.twitter.dto.user.UserV2.UserData;
 import io.github.redouane59.twitter.helpers.ConverterHelper;
-import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -156,6 +158,14 @@ public class TweetV2 implements Tweet {
     return includes.getPlaces();
   }
 
+  @Override
+  public List<Polls> getPolls() {
+    if (includes == null) {
+      return Collections.emptyList();
+    }
+    return includes.getPolls();
+  }
+  
   @Override
   public int getRetweetCount() {
     if (data == null) {
@@ -347,6 +357,12 @@ public class TweetV2 implements Tweet {
     }
 
     @Override
+    public List<Polls> getPolls() {
+      LOGGER.info(NOT_IMPLEMENTED_EXCEPTION);
+      return Collections.emptyList();
+    }
+    
+    @Override
     public List<StreamRule> getMatchingRules() {
       LOGGER.info(NOT_IMPLEMENTED_EXCEPTION);
       return Collections.emptyList();
@@ -383,6 +399,7 @@ public class TweetV2 implements Tweet {
     private List<TweetV2.TweetData>     tweets;
     private List<TweetV2.MediaEntityV2> media;
     private List<TweetV2.Place>         places;
+    private List<TweetV2.Polls>         polls;
   }
 
 
@@ -556,6 +573,24 @@ public class TweetV2 implements Tweet {
     }
   }
 
+  @Getter
+  @Setter
+  public static class Polls {
+
+      @JsonProperty("voting_status")
+      private String votingStatus;
+      @JsonProperty("options")
+      private List<Options> options;
+
+      @Getter
+      @Setter
+      public static class Options {
+
+          private String label;
+          private long votes;
+      }
+  }
+  
   @Getter
   @Setter
   public static class MediaPublicMetricsDTO {

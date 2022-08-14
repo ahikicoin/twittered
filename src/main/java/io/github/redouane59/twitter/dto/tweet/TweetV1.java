@@ -1,10 +1,18 @@
 package io.github.redouane59.twitter.dto.tweet;
 
+import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import io.github.redouane59.twitter.dto.stream.StreamRules.StreamRule;
 import io.github.redouane59.twitter.dto.tweet.TweetV2.Place;
+import io.github.redouane59.twitter.dto.tweet.TweetV2.Polls;
 import io.github.redouane59.twitter.dto.tweet.entities.BaseEntity;
 import io.github.redouane59.twitter.dto.tweet.entities.Entities;
 import io.github.redouane59.twitter.dto.tweet.entities.HashtagEntity;
@@ -15,11 +23,6 @@ import io.github.redouane59.twitter.dto.tweet.entities.UrlEntity;
 import io.github.redouane59.twitter.dto.tweet.entities.UserMentionEntity;
 import io.github.redouane59.twitter.dto.user.UserV1;
 import io.github.redouane59.twitter.helpers.ConverterHelper;
-import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -123,6 +126,12 @@ public class TweetV1 implements Tweet {
 
   @Override
   public List<Place> getPlaces() {
+    LOGGER.error(NOT_IMPLEMENTED_EXCEPTION);
+    return Collections.emptyList();
+  }
+
+  @Override
+  public List<Polls> getPolls() {
     LOGGER.error(NOT_IMPLEMENTED_EXCEPTION);
     return Collections.emptyList();
   }

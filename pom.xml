@@ -156,7 +156,7 @@
       <url>https://oss.sonatype.org/content/repositories/snapshots</url>
     </snapshotRepository>
   </distributionManagement>
-  <groupId>io.github.redouane59.twitter</groupId>
+  <groupId>io.github.ahikicoin.twitter</groupId>
 
   <licenses>
     <license>

@@ -1,12 +1,14 @@
 package io.github.redouane59.twitter.dto.tweet;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 import io.github.redouane59.twitter.dto.stream.StreamRules;
 import io.github.redouane59.twitter.dto.tweet.TweetV2.Place;
+import io.github.redouane59.twitter.dto.tweet.TweetV2.Polls;
 import io.github.redouane59.twitter.dto.tweet.entities.Entities;
 import io.github.redouane59.twitter.dto.tweet.entities.MediaEntity;
 import io.github.redouane59.twitter.dto.user.User;
-import java.time.LocalDateTime;
-import java.util.List;
 
 public interface Tweet {
 
@@ -158,6 +160,11 @@ public interface Tweet {
    */
   List<Place> getPlaces();
 
+  /**
+   * Get the {@link Polls polls} of the tweet
+   */
+  List<Polls> getPolls();
+  
   /**
    * When an activity is delivered through a filtered stream connection, the matching_rules list contains which list of filters matched against the
    * Tweet delivered.
