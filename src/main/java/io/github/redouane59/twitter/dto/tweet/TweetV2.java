@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -581,11 +582,12 @@ public class TweetV2 implements Tweet {
       @JsonProperty("voting_status")
       private String votingStatus;
       @JsonProperty("duration_minutes")
-      private String durationMinutes;
+      private int durationMinutes;
       @JsonProperty("options")
       private List<Options> options;
       @JsonProperty("end_datetime")
-      private String endDatetime;
+      @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "GMT")
+      private LocalDateTime endDatetime;
 
       @Getter
       @Setter
