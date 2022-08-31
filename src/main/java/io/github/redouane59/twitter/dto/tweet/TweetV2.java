@@ -586,7 +586,7 @@ public class TweetV2 implements Tweet {
       @JsonProperty("options")
       private List<Options> options;
       @JsonProperty("end_datetime")
-      @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "GMT")
+      @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX")
       private LocalDateTime endDatetime;
 
       @Getter
